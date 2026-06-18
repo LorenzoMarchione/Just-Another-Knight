@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c3c1293de867824887b347b18eeba85, type: 3}
+  m_Name: Heal Lv. 1
+  m_EditorClassIdentifier: Assembly-CSharp::HealSpellSO
+  itemName: Heal Spell LV 1
+  icon: {fileID: -1751369029, guid: 1a12e84d5290c7b4a8450a6a1bccb648, type: 3}
+  itemSprite: {fileID: -5164599079202685034, guid: 5fbe81d1e35291f47a3242fa00cdfdc3, type: 3}
+  cooldown: 5
+  healAmount: 10
+  healFXPrefab: {fileID: 4500941852569102865, guid: 90283d34863661d4fbb6539eeb9cd76b, type: 3}
