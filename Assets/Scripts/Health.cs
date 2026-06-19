@@ -13,7 +13,7 @@ public class Health : MonoBehaviour
     {
         health = maxHealth;
     }
-    public void ChangeHeatlh(int amount, Vector2 sourcePosition)
+    public void ChangeHeatlh(int amount, Vector2 sourcePosition) //call event when damaged or dead
     {
         health += amount;
         if(health > maxHealth) 
