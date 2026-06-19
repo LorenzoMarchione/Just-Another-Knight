@@ -4,7 +4,7 @@ public class Combat : MonoBehaviour
 {
     public Player player;
 
-    [Header("Attack Variables")]
+    [Header("Attack Settings")]
     public int damage;
     public float attackRadius;
     public float attackCooldown;
@@ -12,15 +12,15 @@ public class Combat : MonoBehaviour
     public LayerMask enemyLayer;
     public Animator hitFX;
 
-    public bool CanAttack => Time.time >= nextAttackTime;
+    public bool CanAttack => Time.time >= nextAttackTime; //true if cooldown time has passed
     private float nextAttackTime;
 
-    public void AttackAnimationFinished()
+    public void AttackAnimationFinished() //call player when attack animation has ended
     {
         player.AnimationFinished();
     }
 
-    public void Attack()
+    public void Attack() //this function is called by attack animation
     {
         if (!CanAttack)
             return;
@@ -34,7 +34,7 @@ public class Combat : MonoBehaviour
             enemy.GetComponent<Health>().ChangeHeatlh(-damage, transform.position);
         }
     }
-    public void OnDrawGizmosSelected()
+    public void OnDrawGizmosSelected() //gizmo of attack cast
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);

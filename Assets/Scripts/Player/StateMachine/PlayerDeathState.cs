@@ -2,17 +2,14 @@ using UnityEngine;
 
 public class PlayerDeathState : PlayerState
 {
-    private string deathScreen = "DeathScreen";
     private float knockbackDuration;
     private float knockbackVelocity;
-    private SceneChanger changer;
     private bool isTimeSlow;
     public PlayerDeathState (Player player) : base(player) { }
 
-    public void SetParameters(int knocknackDirection, SceneChanger changer)
+    public void SetParameters(int knocknackDirection)
     {
         knockbackVelocity = knocknackDirection * damage.knockbackForce;
-        this.changer = changer;
     }
     public override void Enter()
     {
@@ -40,8 +37,6 @@ public class PlayerDeathState : PlayerState
     }
     public override void AnimationFinished()
     {
-        changer.sceneToLoad = deathScreen;
-        changer.ChengeSceneNow();
     }
     public override void Exit()
     {
