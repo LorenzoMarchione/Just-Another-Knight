@@ -12,7 +12,7 @@ public class EnemyDamage : MonoBehaviour
     [SerializeField] private float torque = 5;
     [SerializeField] private float lifetime = 2;
 
-    public void OnEnable()
+    public void OnEnable() //suscribe to damaged events
     {
         health.OnDamaged += HandleDamage;
         health.OnDeath += HandleDeath;
@@ -21,14 +21,14 @@ public class EnemyDamage : MonoBehaviour
     {
         health.OnDamaged -= HandleDamage;
     }
-    public void HandleDamage(Vector2 sourcePosition)
+    public void HandleDamage(Vector2 sourcePosition) //when damaged give knockback direction to state
     {
         int knockbackDir = 0;
         knockbackDir = transform.position.x > sourcePosition.x ? 1 : -1;
 
         enemy.StateMachine.ChangeState(new DamagedState(enemy, knockbackDir));
     }
-    public void HandleDeath(Vector2 sourcePosition)
+    public void HandleDeath(Vector2 sourcePosition) //when dead explode in bits
     {
         if(deathParts.Length == 0)
         {

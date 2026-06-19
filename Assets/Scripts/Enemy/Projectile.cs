@@ -14,8 +14,8 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     { 
-        //operacion para comparar layers de forma mas rapida y robusta 
-        //transforma layer en layermask para comparar con bits de layermask groundlayer y si coincide algun bit el resultado es diferente de 0
+        //operation to efficiently compare layers 
+        //transforms layer in layermask and compares for coincidences in layermask
         if(((1 << collision.gameObject.layer) & groundLayer) != 0)
         {
             Destroy(gameObject);

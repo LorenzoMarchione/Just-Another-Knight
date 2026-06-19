@@ -9,8 +9,8 @@ public class EnemySenses : MonoBehaviour
     [SerializeField] private Transform[] wallCheck;
     [SerializeField] private Transform attackPoint;
 
-    public bool IsAtCliff() => !Physics2D.Raycast(groundCheck.position, Vector2.down, config.groundCheckDistance, config.groundLayer);
-    public bool IsHittingWall()
+    public bool IsAtCliff() => !Physics2D.Raycast(groundCheck.position, Vector2.down, config.groundCheckDistance, config.groundLayer); //sense cliff ahead
+    public bool IsHittingWall() //sense wall ahead
     {
         Vector2 dir = Vector2.right * enemy.Facing;
         foreach (Transform check in wallCheck)
@@ -21,8 +21,8 @@ public class EnemySenses : MonoBehaviour
         }
         return false;
     }
-    public bool IsPushingAlly() => Physics2D.Raycast(groundCheck.position, Vector2.right * enemy.Facing, config.groundCheckDistance, config.enemyLayer);
-    public Transform GetChaseTarget()
+    public bool IsPushingAlly() => Physics2D.Raycast(groundCheck.position, Vector2.right * enemy.Facing, config.groundCheckDistance, config.enemyLayer); //sense ally ahead
+    public Transform GetChaseTarget() //sense alive player location
     {
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, config.chaseRange, config.targetLayer);
         if (!hit)
@@ -32,21 +32,21 @@ public class EnemySenses : MonoBehaviour
             return null;
         return hit.transform;
     }
-    public bool IsInMeleeRange(Transform target)
+    public bool IsInMeleeRange(Transform target) //sense player in melee range
     {
         if(!target)
             return false;
         float distance = Vector2.Distance(attackPoint.position, target.position);
         return distance <= config.meleeRange;
     }
-    public bool IsInShootingRange(Transform target)
+    public bool IsInShootingRange(Transform target) //sense player in ranged range
     {
         if (!target)
             return false;
         float distance = Vector2.Distance(attackPoint.position, target.position);
         return distance <= config.rangedRange;
     }
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected() //gizmos to visualize ranges
     {
         //Ground Check
         Gizmos.color = Color.blue;

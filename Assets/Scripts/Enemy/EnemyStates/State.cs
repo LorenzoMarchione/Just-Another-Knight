@@ -22,7 +22,7 @@ public abstract class State
         combat = enemy.Combat;
     }
 
-    public virtual void Enter() 
+    public virtual void Enter() //run animation of state 
     {
         if(!string.IsNullOrEmpty(AnimBoolName)) 
             anim.SetBool(AnimBoolName, true);
@@ -30,7 +30,7 @@ public abstract class State
     public virtual void Update() { }
     public virtual void FixedUpdate() { }
     public virtual void OnAnimationFinished() { }
-    public virtual void Exit() 
+    public virtual void Exit() //stop animation of state
     {
         if (!string.IsNullOrEmpty(AnimBoolName))
             anim.SetBool(AnimBoolName, false);

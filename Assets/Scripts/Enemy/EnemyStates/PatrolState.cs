@@ -5,7 +5,7 @@ public class PatrolState : State
     protected override string AnimBoolName => "isWalking";
     public PatrolState(Enemy enemy) : base(enemy) { }
 
-    public override void FixedUpdate()
+    public override void FixedUpdate() //patrol until target enters vision
     {
         if(senses.GetChaseTarget())
         {

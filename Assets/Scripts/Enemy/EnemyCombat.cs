@@ -12,9 +12,9 @@ public class EnemyCombat : MonoBehaviour
         enemy = GetComponent<Enemy>();
         config = enemy.Config;
     }
-    public bool CanMeleeAttack() => Time.time >= lastAttacktime + config.meleeCooldown;
-    public bool CanRangedAttack() => Time.time >= lastAttacktime + config.rangedCooldown;
-    public void PerformMeleeAtack()
+    public bool CanMeleeAttack() => Time.time >= lastAttacktime + config.meleeCooldown; //melee attack cooldown
+    public bool CanRangedAttack() => Time.time >= lastAttacktime + config.rangedCooldown; //ranged attack cooldown
+    public void PerformMeleeAtack() //attack uses raycast
     {
         lastAttacktime = Time.time;
         Collider2D hit = Physics2D.OverlapCircle(attackPoint.position, config.meleeRange, config.targetLayer);
@@ -27,7 +27,7 @@ public class EnemyCombat : MonoBehaviour
         }
 
     }
-    public void PerformRangedAttack()
+    public void PerformRangedAttack() //ranged attack uses prefabs for projectiles
     {
         lastAttacktime = Time.time;
         Vector2 fireDirection = (enemy.CurrentTarget.position - attackPoint.position).normalized;

@@ -17,7 +17,7 @@ public class DamagedState : State
         knockbackDuration = config.knockbackDuration;
         rigidbody2.linearVelocityX = knockbackVelocity;
     }
-    public override void FixedUpdate()
+    public override void FixedUpdate() //run knockback and change state at knockback end if it isnt falling
     {
         knockbackDuration -= Time.fixedDeltaTime;
         if(knockbackDuration <= 0)

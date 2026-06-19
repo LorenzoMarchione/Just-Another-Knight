@@ -29,14 +29,14 @@ public class Enemy: MonoBehaviour
     private void Update() => StateMachine.CurrentState?.Update();
     private void FixedUpdate() => StateMachine.CurrentState?.FixedUpdate();
     public void OnAnimationFinished() => StateMachine.CurrentState?.OnAnimationFinished();
-    public void FaceTarget(Transform target)
+    public void FaceTarget(Transform target) //change direction to face entity given
     {
         float offset = target.position.x - transform.position.x;
         int direction = offset > 0 ? 1 : -1;
         if (direction != Facing)
             Flip();
     }
-    public void Flip() 
+    public void Flip()  //face opposite direction
     { 
         Facing *= -1;
 
