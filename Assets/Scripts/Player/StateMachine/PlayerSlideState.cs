@@ -7,7 +7,7 @@ public class PlayerSlideState : PlayerState
 
     public PlayerSlideState(Player player) : base(player) { }
 
-    public override void Enter()
+    public override void Enter() //slide animation, change collider size and start slide duration, slide stop duration (similar to a slide cooldown)
     {
         base.Enter();
 
@@ -18,7 +18,7 @@ public class PlayerSlideState : PlayerState
         anim.SetBool("isSliding", true);
         player.isSliding = true;
     }
-    public override void Update()
+    public override void Update() 
     {
         base.Update();
 
@@ -28,6 +28,7 @@ public class PlayerSlideState : PlayerState
             slideTimer -= Time.deltaTime;
         else if (slideStopTimer <= 0)
             slideStopTimer = player.slideStopDuration;
+        //time between slide end and change state to stop from entering another slide immediatly
         else
         {
             slideStopTimer -= Time.deltaTime;

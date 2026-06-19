@@ -4,7 +4,7 @@ public class PlayerJumpState : PlayerState
 {
     public PlayerJumpState (Player player) : base (player) { }
 
-    public override void Enter()
+    public override void Enter() //impulse on state enter
     {
         base.Enter();
         anim.SetBool("isJumping", true);
@@ -24,7 +24,7 @@ public class PlayerJumpState : PlayerState
         else if (player.isGrounded && rigidbody2.linearVelocityY <= 0.1f)
             player.ChangeState(player.idleState);
     }
-    public override void FixedUpdate()
+    public override void FixedUpdate() //variable gravity for jump and jump cancel on released input
     {
         base.FixedUpdate();
         

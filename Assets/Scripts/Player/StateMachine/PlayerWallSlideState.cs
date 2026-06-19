@@ -19,7 +19,7 @@ public class PlayerWallSlideState : PlayerState
         else if (!player.isTouchingWall || Mathf.Abs(MoveInput.x) < 0.1f)
             player.ChangeState(player.idleState);
     }
-    public override void FixedUpdate()
+    public override void FixedUpdate() //fall slowly on walls
     {
         rigidbody2.linearVelocity = new Vector2(0, wallSlideSpeed);
     }

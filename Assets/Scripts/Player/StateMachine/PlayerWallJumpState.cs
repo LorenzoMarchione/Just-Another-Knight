@@ -6,7 +6,7 @@ public class PlayerWallJumpState : PlayerState
 
     public PlayerWallJumpState (Player player) : base(player) { }
 
-    public override void Enter()
+    public override void Enter() //stop momentum on enter and jump oposite from wall mor horizontally
     {
         anim.SetBool("isWallJumping", true);
 

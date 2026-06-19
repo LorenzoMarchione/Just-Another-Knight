@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerIdleState : PlayerState
 {
     public PlayerIdleState (Player player) : base (player) { }
-    public override void Enter()
+    public override void Enter() //idle animation and stop momentum from previous state
     {
         anim.SetBool("isIdle", true);
         rigidbody2.linearVelocityX = 0f;
     }
-    public override void Update()
+    public override void Update() //idleState is main concentration point for stateChanges
     {
         base.Update();
 

@@ -8,7 +8,7 @@ public class TeleportSpellSO : SpellSO
     public float range = 5;
     public float playerRadius = 0.69f;
     public LayerMask obstacleLayer;
-    public override void Cast(Player player)
+    public override void Cast(Player player) //teleports player to desired location based on range
     {
         Vector2 direction = new Vector2(player.facing, 0);
         Vector2 targetPosition = (Vector2)player.transform.position + direction * range;
@@ -21,7 +21,8 @@ public class TeleportSpellSO : SpellSO
             float step = 0.2f;
             Vector2 adjustedPosition = targetPosition;
 
-            while (hit != null && Vector2.Distance(adjustedPosition, player.transform.position) > 0)
+            //this should readjust teleport location if it collides with something, for the moment is not working properly
+            while (hit != null && Vector2.Distance(adjustedPosition, player.transform.position) > 0) 
             {
                 adjustedPosition -= direction * step;
                 hit = Physics2D.OverlapCircle(adjustedPosition, playerRadius, obstacleLayer);

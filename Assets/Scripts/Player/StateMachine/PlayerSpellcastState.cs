@@ -10,7 +10,7 @@ public class PlayerSpellcastState : PlayerState
 
         anim.SetBool("isCasting", true);
     }
-    public override void AnimationFinished()
+    public override void AnimationFinished() //change state when finished casting
     {
         base.AnimationFinished();
 

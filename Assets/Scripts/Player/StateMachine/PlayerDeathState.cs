@@ -11,7 +11,7 @@ public class PlayerDeathState : PlayerState
     {
         knockbackVelocity = knocknackDirection * damage.knockbackForce;
     }
-    public override void Enter()
+    public override void Enter() //same as damaged state with time slow for dramatic effect
     {
         base.Enter();
         Time.timeScale = 0.3f;
@@ -21,7 +21,7 @@ public class PlayerDeathState : PlayerState
         knockbackDuration = damage.knockbackDuration;
         player.rigidbody2.linearVelocityX = knockbackVelocity;
     }
-    public override void FixedUpdate()
+    public override void FixedUpdate() //normal time when knockback ends
     {
         knockbackDuration -= Time.deltaTime;
         if (knockbackDuration <= 0)

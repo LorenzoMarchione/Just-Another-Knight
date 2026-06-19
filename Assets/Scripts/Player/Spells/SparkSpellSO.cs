@@ -10,7 +10,7 @@ public class SparkSpellSO : SpellSO
     public GameObject sparkFXPrefab;
     public LayerMask enemyLayer;
 
-    public override void Cast(Player player)
+    public override void Cast(Player player) //damages all enemies inside radius
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(player.transform.position, radius, enemyLayer);
 

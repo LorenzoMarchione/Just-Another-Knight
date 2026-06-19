@@ -4,7 +4,7 @@ public class PlayerCrouchState : PlayerState
 {
     public PlayerCrouchState (Player player) : base (player) { }
 
-    public override void Enter()
+    public override void Enter() //crouching animation and collider size change
     {
         base.Enter();
 
@@ -20,7 +20,7 @@ public class PlayerCrouchState : PlayerState
         else if (MoveInput.y > -0.1f && !player.CheckForCeiling())
             player.ChangeState(player.idleState);
     }
-    public override void FixedUpdate()
+    public override void FixedUpdate() //walking logic
     {
         base.FixedUpdate();
         if(Mathf.Abs(MoveInput.x) > 0.1f)
@@ -28,7 +28,7 @@ public class PlayerCrouchState : PlayerState
         else
             rigidbody2.linearVelocityX = 0;
     }
-    public override void Exit()
+    public override void Exit() //return collider to normal size
     {
         base.Exit();
 

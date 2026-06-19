@@ -6,7 +6,7 @@ using System.Collections;
 
 public class SpellSlot : MonoBehaviour
 {
-    [Header("References")]
+    [Header("References")] //ui components
     public Image iconImage;
     public GameObject highLight;
     [SerializeField] private TMP_Text spellText;
@@ -14,6 +14,7 @@ public class SpellSlot : MonoBehaviour
 
     public SpellSO AssignedSpell { get; private set; }
 
+    [Header("Slot colors and size")]
     [SerializeField] private Color normalColor;
     [SerializeField] private Color highlightColor = Color.white;
     private Vector3 normalScale = Vector3.one;
@@ -23,7 +24,7 @@ public class SpellSlot : MonoBehaviour
     [SerializeField] private float popScale = 1.3f;
     [SerializeField] private float popDuration = 0.3f;
 
-    public void SetSpell(SpellSO spellSO)
+    public void SetSpell(SpellSO spellSO) //show spell icon in slot
     {
         AssignedSpell = spellSO;
 
@@ -43,7 +44,7 @@ public class SpellSlot : MonoBehaviour
         cooldownOverlay.fillAmount = 0;
         SetHighlight(false);
     }
-    public void SetHighlight(bool active)
+    public void SetHighlight(bool active) //change slot if spell is selected
     {
         highLight.SetActive(active);
 
@@ -59,7 +60,7 @@ public class SpellSlot : MonoBehaviour
         StartCoroutine(CooldownRoutine(cooldownTime));
     }
 
-    private IEnumerator CooldownRoutine(float cooldownTime)
+    private IEnumerator CooldownRoutine(float cooldownTime) //show visual cooldown with radius fill
     {
         cooldownOverlay.fillAmount = 1;
         float elapsed = 0;
@@ -74,7 +75,7 @@ public class SpellSlot : MonoBehaviour
         cooldownOverlay.fillAmount = 0;
         yield return StartCoroutine(PopEffect());
     }
-    private IEnumerator PopEffect()
+    private IEnumerator PopEffect() //little bounce to visually show when spell is ready
     {
         float elapsed = 0;
         float halfDuration = popDuration / 2;

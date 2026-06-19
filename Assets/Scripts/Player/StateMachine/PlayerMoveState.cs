@@ -26,7 +26,7 @@ public class PlayerMoveState : PlayerState
             anim.SetBool("isRunning", true);
     }
 
-    public override void FixedUpdate()
+    public override void FixedUpdate() //walking and running logic
     {
         base.FixedUpdate();
 

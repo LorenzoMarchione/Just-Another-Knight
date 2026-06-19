@@ -5,7 +5,7 @@ public class SpellUIManager : MonoBehaviour
 {
     [SerializeField] private List<SpellSlot> slots = new List<SpellSlot>();
 
-    public void ShowSpells(List<SpellSO> spells)
+    public void ShowSpells(List<SpellSO> spells) //show all available spells
     {
         for(int i = 0; i < slots.Count; i++)
         {
@@ -15,13 +15,13 @@ public class SpellUIManager : MonoBehaviour
                 slots[i].SetSpell(null);
         }
     }
-    public void HighlightSpell(SpellSO activeSpell)
+    public void HighlightSpell(SpellSO activeSpell) //Higlight spell selected on magic
     {
         foreach(SpellSlot slot in slots)
             slot.SetHighlight(slot.AssignedSpell == activeSpell);
     }
 
-    public void TriggerCooldown(SpellSO spellSO, float cooldownTime)
+    public void TriggerCooldown(SpellSO spellSO, float cooldownTime) //start individual spellslot cooldown
     {
         foreach(SpellSlot slot in slots)
         {
