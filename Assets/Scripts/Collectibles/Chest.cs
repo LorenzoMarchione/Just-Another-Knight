@@ -14,18 +14,18 @@ public class Chest : MonoBehaviour
     private PlayerInput playerInput;
     private bool isOpened;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //detect when player is in use range
     {
         if (collision.TryGetComponent<PlayerInput>(out var input))
             playerInput = input;
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //detect when player exits use range
     {
         if (collision.TryGetComponent<PlayerInput>(out var input))
             if (input == playerInput)
                 playerInput = null;
     }
-    private void Update()
+    private void Update() //check player input
     {
         if (isOpened || playerInput == null)
             return;
@@ -33,7 +33,7 @@ public class Chest : MonoBehaviour
             StartCoroutine(OpenChestRoutine());
 
     }
-    private IEnumerator OpenChestRoutine()
+    private IEnumerator OpenChestRoutine() //open animation and spawn items with delay between them
     {
         isOpened = true;
         anim.Play("ChestOpen");

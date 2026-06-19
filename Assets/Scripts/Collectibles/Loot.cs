@@ -17,30 +17,30 @@ public class Loot : MonoBehaviour
     [SerializeField] private bool canBeCollected = false;
     [SerializeField] private float collectDelay;
 
-    public void Initialize(CollectibleSO collectibleSO)
+    public void Initialize(CollectibleSO collectibleSO) //create item based on config
     {
         this.collectibleSO = collectibleSO;
         spriteRenderer.sprite = collectibleSO.itemSprite;
         StartCoroutine(EnableCollection());
     }
-    private IEnumerator EnableCollection()
+    private IEnumerator EnableCollection() //wait before item can be collected after creation
     {
         yield return new WaitForSeconds(collectDelay);
         canBeCollected = true;
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //collect item on contact
     {
         player = collision.GetComponent<Player>();
         if (player == null || !canBeCollected)
             return;
         CollectItem();
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision) //deassign player on exit contact
     {
         if (collision.CompareTag("Player"))
             player = null;
     }
-    private void CollectItem()
+    private void CollectItem() //show animated text when collected and destroy object
     {
         itemMessage.text = "Found " + collectibleSO.itemName;
         anim.Play("CollectLoot");
