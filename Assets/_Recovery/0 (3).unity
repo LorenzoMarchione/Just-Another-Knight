@@ -1794,7 +1794,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbc9f20c44a52c458d0a80b03429751, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneChanger
-  sceneToLoad: Room2
+  sceneToLoad: Room1
 --- !u!114 &927335855
 MonoBehaviour:
   m_ObjectHideFlags: 0
