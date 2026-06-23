@@ -13,13 +13,16 @@ public class ParallaxManager : MonoBehaviour
 
     public Transform camTransform;
     private Vector3 cameraLastPosition;
-    void Start()
+    public void Initialize(Transform camera)
     {
+        camTransform = camera;
         cameraLastPosition = camTransform.position;
     }
 
     void LateUpdate() //move background to follow player based on parallaxFactor
     {
+        if(!camTransform)
+            return;
         Vector3 cameraDelta = camTransform.position - cameraLastPosition; 
         foreach (ParallaxLayer layer in layers) 
         {

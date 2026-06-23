@@ -4,6 +4,10 @@ using UnityEngine.SceneManagement;
 
 public class RoomTransitionManager : MonoBehaviour
 {
+    //this script is the bridge between bootstrap scene an room scenes
+    //control screen fade from transitions
+    [SerializeField] private ScreenFader screenFader;
+    [SerializeField] private CameraManager cameraManager;
     //room that is currently loaded
     private string currentRoom = "";
 
@@ -20,7 +24,10 @@ public class RoomTransitionManager : MonoBehaviour
     //unload current scene load another scene in parallel and save current scene
     private IEnumerator Transition(string sceneName, string spawnID)
     {
-        if (!string.IsNullOrEmpty(currentRoom))//this prevents transitions if the game just started
+        //fade to black screen before transition
+        yield return screenFader.Fade(0f, 1f, 0.5f);
+        //this prevents transitions if the game just started
+        if (!string.IsNullOrEmpty(currentRoom))
         {
             yield return SceneManager.UnloadSceneAsync(currentRoom);
             yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
@@ -34,6 +41,12 @@ public class RoomTransitionManager : MonoBehaviour
         //save current activated scene
         currentRoom = SceneManager.GetActiveScene().name;
         SetupRoom(spawnID);
+        SetupCameraConfiner();
+        //wait before fading to allow camera to relocate
+        yield return new WaitForSeconds(0.75f);
+        //fade to clean screen after transition
+        ResetParallax();
+        yield return screenFader.Fade(1f, 0f, 1f);
     }
     //set spawnpoint of player for this room
     private void SetupRoom(string spawnID)
@@ -54,6 +67,20 @@ public class RoomTransitionManager : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+    //find script with scene confiner and give it to cinemachine trough camera manager
+    private void SetupCameraConfiner()
+    {
+        CameraConfinerProvider provider = FindAnyObjectByType<CameraConfinerProvider>();
+        cameraManager.SetConfiner(provider.confiner);
+    }
+    private void ResetParallax()
+    {
+        ParallaxManager parallax = FindAnyObjectByType<ParallaxManager>();
+        if(parallax != null) 
+        {
+            parallax.Initialize(cameraManager.camTransform);
         }
     }
 }
