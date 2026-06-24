@@ -10,6 +10,7 @@ public class RoomTransitionManager : MonoBehaviour
     [SerializeField] private CameraManager cameraManager;
     //room that is currently loaded
     private string currentRoom = "";
+    private bool isTransitioning;
 
     void Start()
     { 
@@ -19,11 +20,15 @@ public class RoomTransitionManager : MonoBehaviour
     //doors call this method
     public void EnterRoom(string sceneName, string spawnID)
     {
+        //this is to stop player from immediatly going to another room while transition isnt finished
+        if (isTransitioning)
+            return;
         StartCoroutine(Transition(sceneName, spawnID));
     }
     //unload current scene load another scene in parallel and save current scene
     private IEnumerator Transition(string sceneName, string spawnID)
     {
+        isTransitioning = true;
         //fade to black screen before transition
         yield return screenFader.Fade(0f, 1f, 0.5f);
         //this prevents transitions if the game just started
@@ -47,6 +52,7 @@ public class RoomTransitionManager : MonoBehaviour
         //fade to clean screen after transition
         ResetParallax();
         yield return screenFader.Fade(1f, 0f, 1f);
+        isTransitioning = false;
     }
     //set spawnpoint of player for this room
     private void SetupRoom(string spawnID)

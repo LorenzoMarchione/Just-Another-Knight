@@ -10519,7 +10519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   targetScene: Room3
-  spawnID: DoorA
+  targetSpawnID: DoorA
 --- !u!1001 &1092901912
 PrefabInstance:
   m_ObjectHideFlags: 0
