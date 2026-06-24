@@ -7,14 +7,21 @@ public class Door : MonoBehaviour
     [SerializeField] private string targetScene;
     //position in wich i spawn inside the scene
     [SerializeField] private string targetSpawnID;
+    [SerializeField] private Collider2D lockDoor;
 
     //change scenes when going through a door
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         RoomTransitionManager manager = collision.GetComponent<RoomTransitionManager>();
         if(manager != null)
         {
             manager.EnterRoom(targetScene, targetSpawnID);
         }
-}
+    }
+    public void LockDoor(bool locked)
+    {
+        lockDoor.enabled = locked;
+    }
+
+
 }
